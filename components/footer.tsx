@@ -148,28 +148,28 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t bg-[#fa8128] border-white/10">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-white/60 font-sans md:text-left text-center text-sm">
+            <p className="text-white font-sans md:text-left text-center text-sm">
               Copyright ©2025 BertAndre Consulting. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link
                 href="#"
-                className="text-white/60 font-sans text-sm hover:text-white transition-colors"
+                className="text-white font-sans text-sm hover:text-white/60 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="#"
-                className="text-white/60 font-sans text-sm hover:text-white transition-colors"
+                className="text-white font-sans text-sm hover:text-white/60 transition-colors"
               >
                 FAQ
               </Link>
               <Link
                 href="#"
-                className="text-white/60 font-sans text-sm hover:text-white transition-colors"
+                className="text-white font-sans text-sm hover:text-white/60 transition-colors"
               >
                 Contact
               </Link>

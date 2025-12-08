@@ -210,11 +210,11 @@ export function Header() {
               </button>
               <Link
                 href="/contact"
-                className="flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 rounded-full font-sans font-medium hover:bg-gray-100 transition-colors"
+                className="flex items-center gap-2 cursor-pointer bg-[#fa8128] text-white px-6 py-3 rounded-full font-sans font-medium transition-all"
               >
                 Let's Talk
-                <span className="w-6 h-6 rounded-full border border-[#1560bd]/30 flex items-center justify-center">
-                  <ArrowUpRight className="w-3 h-3 text-[#1560bd]" />
+                <span className="w-6 h-6 rounded-full border border-white flex items-center justify-center">
+                  <ArrowUpRight className="w-3 h-3 text-white" />
                 </span>
               </Link>
             </div>

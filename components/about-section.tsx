@@ -218,7 +218,7 @@ export function AboutSection() {
               transition={{ delay: 0.9 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-3 bg-[#1a1a1a] text-white px-6 py-4 rounded-full font-sans font-medium hover:bg-[#1a1a1a]/90 transition-colors group"
+              className="flex items-center gap-3 cursor-pointer bg-[#fa8128] text-white px-6 py-4 rounded-full font-sans font-medium transition-colors group"
             >
               More About Us
               <span className="w-8 h-8 rounded-full bg-white text-[#1a1a1a] flex items-center justify-center">

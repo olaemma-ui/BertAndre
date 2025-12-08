@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { ArrowUpRight } from "lucide-react"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 export function ConsultationSection() {
   return (
@@ -43,7 +43,9 @@ export function ConsultationSection() {
               className="inline-flex items-center gap-2 border border-gray-300 px-5 py-2 rounded-full mb-6"
             >
               <span className="text-[#1560bd]">+</span>
-              <span className="text-sm font-sans font-medium text-[#1a1a1a]">Contact Us</span>
+              <span className="text-sm font-sans font-medium text-[#1a1a1a]">
+                Contact Us
+              </span>
               <span className="text-[#1560bd]">+</span>
             </motion.div>
 
@@ -64,8 +66,8 @@ export function ConsultationSection() {
               transition={{ delay: 0.5 }}
               className="text-gray-600 font-sans mb-8"
             >
-              Need help with a project, have a question about our work? have a question about our work? We're here to
-              help you.
+              Need help with a project, have a question about our work? have a
+              question about our work? We're here to help you.
             </motion.p>
 
             {/* Form */}
@@ -97,7 +99,7 @@ export function ConsultationSection() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="flex items-center gap-3 bg-[#1a1a1a] text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-[#1a1a1a]/90 transition-colors"
+                className="flex items-center gap-3 cursor-pointer bg-[#fa8128] text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-[#1a1a1a]/90 transition-colors"
               >
                 Request Free Consultation
                 <span className="w-8 h-8 rounded-full bg-white text-[#1a1a1a] flex items-center justify-center">
@@ -109,5 +111,5 @@ export function ConsultationSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
