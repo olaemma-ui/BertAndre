@@ -19,6 +19,20 @@ const logos = [
   "Matrixian",
   "logitech",
   "Google",
+  "ogitech",
+  "Google",
+  "CHASE",
+  "factual",
+  "Matrixian",
+  "logitech",
+  "Google",
+  "ogitech",
+  "Google",
+  "CHASE",
+  "factual",
+  "Matrixian",
+  "logitech",
+  "Google",
 ];
 
 // Marquee component for scrolling logos
@@ -72,10 +86,10 @@ function Marquee({
           }
         }
         .animate-marquee-left {
-          animation: marquee-left 25s linear infinite;
+          animation: marquee-left 125s linear infinite;
         }
         .animate-marquee-right {
-          animation: marquee-right 25s linear infinite;
+          animation: marquee-right 125s linear infinite;
         }
       `}</style>
     </div>
@@ -188,7 +202,7 @@ export function AboutSection() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.6 + index * 0.1 }}
-                  className="flex items-center gap-3"
+                  className="flex items-center gap-1"
                 >
                   <CheckCircle className="w-5 h-5 text-[#1560bd]" />
                   <span className="font-sans text-[#1a1a1a]">{item}</span>
@@ -219,14 +233,14 @@ export function AboutSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-20 pt-12 border-t border-gray-100"
         >
           <Marquee className="py-4">
             {logos.map((logo, index) => (
               <span
                 key={index}
-                className="text-gray-400 font-sans font-medium text-lg mx-8 md:mx-12"
+                className="text-gray-400 font-sans font-medium text-lg mx-8 md:mx-12-"
               >
                 {logo}
               </span>

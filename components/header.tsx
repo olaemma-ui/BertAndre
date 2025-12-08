@@ -41,16 +41,16 @@ export function Header() {
   ];
 
   const servicesDropdown = {
-    whyConsulo: [
+    whyUs: [
       {
         title: "Become a Partner",
         description:
-          "Links customers with trusted Partners who help them realize greater value—faster—through Consulo.",
+          "Links customers with trusted Partners who help them realize greater value—faster—through BertAndre.",
       },
       {
         title: "Case Studies",
         description:
-          "Hundreds of emerging brands thrive with Consulo. Discover their journeys.",
+          "Hundreds of emerging brands thrive with BertAndre. Discover their journeys.",
       },
       {
         title: "Product Development",
@@ -59,9 +59,9 @@ export function Header() {
       },
     ],
     featuredCaseStudy: {
-      title: "Consulo Subscriptions",
+      title: "BertAndre Subscriptions",
       description:
-        "Hundreds of emerging brands thrive with Consulo. Discover their journeys.",
+        "Hundreds of emerging brands thrive with BertAndre. Discover their journeys.",
       image: "/colorful-sticky-notes-on-wall-brainstorming.jpg",
     },
   };
@@ -133,28 +133,26 @@ export function Header() {
                           className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[700px] bg-white rounded-xl shadow-2xl overflow-hidden"
                         >
                           <div className="grid grid-cols-2 gap-0">
-                            {/* Why Consulo Column */}
+                            {/* Why BertAndre Column */}
                             <div className="p-6 border-r border-gray-100">
                               <p className="text-xs font-sans font-semibold text-gray-400 uppercase tracking-wider mb-4">
                                 WHY CONSULO
                               </p>
                               <div className="space-y-4">
-                                {servicesDropdown.whyConsulo.map(
-                                  (dropItem, idx) => (
-                                    <Link
-                                      key={idx}
-                                      href="/services"
-                                      className="block group"
-                                    >
-                                      <h4 className="font-serif font-bold text-[#1a1a1a] group-hover:text-[#1560bd] transition-colors">
-                                        {dropItem.title}
-                                      </h4>
-                                      <p className="text-sm text-gray-500 font-sans leading-relaxed">
-                                        {dropItem.description}
-                                      </p>
-                                    </Link>
-                                  )
-                                )}
+                                {servicesDropdown.whyUs.map((dropItem, idx) => (
+                                  <Link
+                                    key={idx}
+                                    href="/services"
+                                    className="block group"
+                                  >
+                                    <h4 className="font-serif font-bold text-[#1a1a1a] group-hover:text-[#1560bd] transition-colors">
+                                      {dropItem.title}
+                                    </h4>
+                                    <p className="text-sm text-gray-500 font-sans leading-relaxed">
+                                      {dropItem.description}
+                                    </p>
+                                  </Link>
+                                ))}
                               </div>
                             </div>
 
@@ -302,7 +300,7 @@ export function Header() {
                                   <div className="pb-4 space-y-3">
                                     {item.name === "Services" && (
                                       <>
-                                        {servicesDropdown.whyConsulo.map(
+                                        {servicesDropdown.whyUs.map(
                                           (service, idx) => (
                                             <Link
                                               key={idx}

@@ -1,14 +1,14 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
 
-const _inter = Inter({ subsets: ["latin"] })
-const _playfair = Playfair_Display({ subsets: ["latin"] })
+const _inter = Inter({ subsets: ["latin"] });
+const _playfair = Playfair_Display({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Consulo - Business Growth Made Simple",
+  title: "BertAndre - Business Growth Made Simple",
   description: "Transform your business with expert consultancy services",
   generator: "v0.app",
   icons: {
@@ -28,12 +28,12 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -42,5 +42,5 @@ export default function RootLayout({
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

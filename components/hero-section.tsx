@@ -46,7 +46,7 @@ export function HeroSection() {
   const current = slides[currentSlide];
 
   return (
-    <section className="relative -top-21 min-h-screen flex flex-col">
+    <section className="relative -top-[82.5px] min-h-screen flex flex-col">
       {/* Background Image */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -55,7 +55,7 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-10"
         >
           <Image
             src={current.image || "/placeholder.svg"}
@@ -64,7 +64,8 @@ export function HeroSection() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-[#1a1a1a]/60" />
+          <div className="absolute inset-0 bg-[#1a1a1a]/60 " />
+          <div className="absolute inset-0 bg-linear-to-b from-[#1560bd]/10 via-[#1560bd]/5 to-[#1560bd]/50" />
         </motion.div>
       </AnimatePresence>
 

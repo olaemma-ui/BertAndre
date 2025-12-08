@@ -6,7 +6,7 @@ import { FAQSection } from "@/components/faq-section";
 import { Footer } from "@/components/footer";
 
 export const metadata = {
-  title: "Contact Us | Consulo",
+  title: "Contact Us | BertAndre",
   description: "Get in touch with our team for a free business consultation.",
 };
 

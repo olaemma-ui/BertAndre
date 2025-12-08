@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { PageHero } from "@/components/page-hero";
+import { ConsultationSection } from "@/components/consultation-section";
+import { FAQSection } from "@/components/faq-section";
 
 export default function AboutPage() {
   const coreValues = [
@@ -38,8 +40,8 @@ export default function AboutPage() {
           breadcrumb={[{ label: "Home", href: "/" }, { label: "About Us" }]}
         />
 
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-6 max-w-4xl">
+        <section className="pb-20 bg-white">
+          <div className="container mx-auto md:px-6 px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -47,6 +49,9 @@ export default function AboutPage() {
               transition={{ duration: 0.5 }}
               className="prose prose-lg max-w-none"
             >
+              <h2 className="text-2xl font-serif font-bold text-[#1a1a1a] mt-12 mb-6">
+                About Us
+              </h2>
               <p className="text-gray-600 mb-6">
                 At BertAndre Consulting, we believe consulting should do more
                 than give advice, it should move people, shift perspectives, and
@@ -148,7 +153,8 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-
+      <FAQSection />
+      <ConsultationSection />
       <Footer />
     </div>
   );

@@ -6,7 +6,7 @@ import { ConsultationSection } from "@/components/consultation-section";
 import { Footer } from "@/components/footer";
 
 export const metadata = {
-  title: "Our Services | Consulo",
+  title: "Our Services | BertAndre",
   description:
     "Explore our comprehensive business consulting and development services.",
 };

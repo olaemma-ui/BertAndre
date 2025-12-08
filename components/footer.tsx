@@ -40,12 +40,13 @@ export function Footer() {
     <footer className="bg-[#1a1a1a] text-white">
       {/* Main Footer */}
       <div className="container mx-auto px-6 py-16 lg:py-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="col-span-2"
           >
             <Link href="/" className="flex items-center gap-2 mb-6">
               <Image
@@ -57,8 +58,11 @@ export function Footer() {
               />
             </Link>
             <p className="text-white/70 font-sans leading-relaxed mb-8">
-              Each demo built with Teba will look different. You can customize
-              almost anything in the appearance of your website with only a few
+              At BertAndre Consulting, we believe consulting should do more than
+              give advice, it should move people, shift perspectives, and create
+              lasting change. That’s why we exist: to help you unlock smarter
+              opportunities through strategic guidance, personalized solutions,
+              and a commitment to real, measurable growth.
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social, index) => (
@@ -147,7 +151,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-white/60 font-sans text-sm">
+            <p className="text-white/60 font-sans md:text-left text-center text-sm">
               Copyright ©2025 BertAndre Consulting. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
