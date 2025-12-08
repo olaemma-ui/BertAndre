@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { ArrowUpRight } from "lucide-react"
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 export function ContactInfoSection() {
   return (
@@ -16,7 +16,8 @@ export function ContactInfoSection() {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block px-4 py-2 rounded-full border border-gray-200 text-sm font-sans text-[#1a1a1a] mb-6">
-              <span className="text-[#1560bd]">+</span> Contact Us <span className="text-[#1560bd]">+</span>
+              <span className="text-[#1560bd]">+</span> Contact Us{" "}
+              <span className="text-[#1560bd]">+</span>
             </span>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#1a1a1a] leading-tight mb-6">
@@ -26,8 +27,9 @@ export function ContactInfoSection() {
             </h2>
 
             <p className="text-gray-600 font-sans leading-relaxed mb-8 max-w-md">
-              Each demo built with Teba will look different. You can customize almost anything in the appearance of your
-              website with only a few clicks. Each demo built with Teba will look different.
+              Each demo built with Teba will look different. You can customize
+              almost anything in the appearance of your website with only a few
+              clicks. Each demo built with Teba will look different.
             </p>
           </motion.div>
 
@@ -37,9 +39,11 @@ export function ContactInfoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-[#1a1a1a] rounded-3xl p-8 lg:p-10"
+            className="bg-[#fa8128] rounded-3xl p-8 lg:p-10"
           >
-            <h3 className="text-2xl font-serif font-bold text-white mb-2">Make an Appointment</h3>
+            <h3 className="text-2xl font-serif font-bold text-white mb-2">
+              Make an Appointment
+            </h3>
             <p className="text-white/60 font-sans text-sm mb-8">
               Feel free to contact with us, we don't spam your email
             </p>
@@ -84,5 +88,5 @@ export function ContactInfoSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
