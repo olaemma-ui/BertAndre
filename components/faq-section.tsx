@@ -46,7 +46,7 @@ export function FAQSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block px-4 py-2 rounded-full border border-gray-200 text-sm font-sans text-[#1a1a1a] mb-6">
+            <span className="inline-block px-4 py-2 rounded-full border border-gray-200 text-sm font-sans text-[#1560bd] mb-6">
               <span className="text-[#1560bd]">+</span> Questions{" "}
               <span className="text-[#1560bd]">+</span>
             </span>
@@ -98,7 +98,7 @@ export function FAQSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className={`rounded-xl overflow-hidden transition-colors ${
-                  openIndex === index ? "bg-[#1a1a1a]" : "bg-gray-100"
+                  openIndex === index ? "bg-[#1560bd]" : "bg-gray-100"
                 }`}
               >
                 <button
@@ -115,8 +115,8 @@ export function FAQSection() {
                   <span
                     className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                       openIndex === index
-                        ? "bg-white/10 text-white"
-                        : "bg-[#1a1a1a] text-white"
+                        ? "bg-[#fa8128] text-white"
+                        : "bg-[#fa8128] text-white"
                     }`}
                   >
                     {openIndex === index ? (

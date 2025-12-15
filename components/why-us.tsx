@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const items = [
   {
-    title: "About Us",
+    title: "About Us",  
     content:
       "At BertAndre Consulting, we believe consulting should do more than give advice, it should move people, shift perspectives, and create lasting change. That’s why we exist: to help you unlock smarter opportunities through strategic guidance, personalized solutions, and a commitment to real, measurable growth.",
   },

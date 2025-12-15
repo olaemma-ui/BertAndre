@@ -38,6 +38,7 @@ export function Header() {
     { name: "Services", hasDropdown: true, href: "/services" },
     // { name: "Blog", hasDropdown: true, href: "/blog" },
     { name: "Contact", hasDropdown: false, href: "/contact" },
+    { name: "Privacy Policy", hasDropdown: false, href: "/privacy-policy" },
   ];
 
   const servicesDropdown = {

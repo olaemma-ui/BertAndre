@@ -25,7 +25,7 @@ const features = [
 
 export function WhyChooseSection() {
   return (
-    <section className="py-20 lg:py-32 bg-[#1a1a1a] overflow-hidden">
+    <section className="py-20 lg:py-32 bg-[#1560bd] overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           {/* Left Content */}
@@ -77,8 +77,8 @@ export function WhyChooseSection() {
                   transition={{ delay: 0.3 + index * 0.1 }}
                   className="bg-white/5 backdrop-blur-xs- rounded-xl p-5"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#1560bd]/20 flex items-center justify-center mb-4">
-                    <feature.icon className="w-5 h-5 text-[#1560bd]" />
+                  <div className="w-10 h-10 rounded-full bg-[#fa8128]/20 flex items-center justify-center mb-4">
+                    <feature.icon className="w-5 h-5 text-[#fa8128]" />
                   </div>
                   <h3 className="font-serif font-bold text-white mb-2">
                     {feature.title}

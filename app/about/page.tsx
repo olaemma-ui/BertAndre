@@ -9,27 +9,6 @@ import { FAQSection } from "@/components/faq-section";
 import WhyUs from "@/components/why-us";
 
 export default function AboutPage() {
-  const coreValues = [
-    {
-      title: "Impact Over Hype",
-      description: "We don’t chase trends. We create value that lasts.",
-    },
-    {
-      title: "People First",
-      description:
-        "Behind every business goal is a human need, and that’s where we focus.",
-    },
-    {
-      title: "Precision & Clarity",
-      description:
-        "We don’t do vague. Every solution is sharp, strategic, and rooted in data.",
-    },
-    {
-      title: "Innovation with Purpose",
-      description:
-        "We embrace technology and new thinking, only when it serves your long-term goals.",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-white">
