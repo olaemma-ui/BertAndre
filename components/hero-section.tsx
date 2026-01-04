@@ -4,31 +4,32 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const slides = [
   {
     id: 1,
-    badge: "welcome to Zentra",
+    badge: "Welcome to BertAndre Consulting",
     heading: "Business Growth Made Simple",
     description:
       "Transform your business with expert consultancy services our team of seasoned consultants unparalleled. Transform your business.",
-    image: "/images/business-meeting.webp",
+    image: "/images/vintage-style-people-working-office-with-computers.jpg",
   },
   {
     id: 2,
-    badge: "expert solutions",
+    badge: "Expert solutions",
     heading: "Strategic Planning Excellence",
     description:
       "Unlock your company's potential with data-driven strategies and innovative solutions tailored to your unique challenges.",
-    image: "/images/business-meeting.webp",
+    image: "/images/business-colleagues-studying-reports.jpg",
   },
   {
     id: 3,
-    badge: "trusted partner",
+    badge: "Trusted partner",
     heading: "Results That Matter",
     description:
       "Partner with industry leaders who understand your vision and deliver measurable outcomes for sustainable success.",
-    image: "/images/business-meeting.webp",
+    image: "/images/man-sitting-down-office-job-interview-desk-with-his-employers.jpg",
   },
 ];
 
@@ -113,18 +114,20 @@ export function HeroSection() {
                 </motion.p>
 
                 {/* CTA Button */}
-                <motion.button
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -30 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="flex items-center gap-3 bg-white text-[#1a1a1a] px-6 py-4 rounded-full font-sans font-medium hover:bg-gray-100 transition-colors group"
-                >
-                  Book Consultation
-                  <span className="w-8 h-8 rounded-full bg-[#1560bd] text-white flex items-center justify-center group-hover:bg-[#1560bd]/90 transition-colors">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </span>
-                </motion.button>
+                <Link href="/book-consultation">
+                  <motion.button
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -30 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="flex items-center gap-3 bg-white text-[#1a1a1a] px-6 py-4 rounded-full font-sans font-medium hover:bg-gray-100 transition-colors group"
+                  >
+                    Book Consultation
+                    <span className="w-8 h-8 rounded-full bg-[#1560bd] text-white flex items-center justify-center group-hover:bg-[#1560bd]/90 transition-colors">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </span>
+                  </motion.button>
+                </Link>
               </motion.div>
             </AnimatePresence>
           </div>

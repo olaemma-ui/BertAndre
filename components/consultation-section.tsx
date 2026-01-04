@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function ConsultationSection() {
   return (
@@ -19,7 +20,7 @@ export function ConsultationSection() {
           >
             <div className="relative aspect-[4/5] max-w-lg mx-auto">
               <Image
-                src="/smiling-businessman-in-gray-suit-holding-tablet.jpg"
+                src="/images/contact-support-team.png"
                 alt="Business consultant"
                 fill
                 className="object-cover rounded-2xl"
@@ -71,42 +72,28 @@ export function ConsultationSection() {
             </motion.p>
 
             {/* Form */}
-            <motion.form
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
-              className="space-y-4"
             >
-              <div className="grid sm:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Your Name*"
-                  className="w-full px-5 py-4 rounded-xl border border-gray-200 bg-white font-sans focus:outline-none focus:border-[#1560bd] transition-colors"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email*"
-                  className="w-full px-5 py-4 rounded-xl border border-gray-200 bg-white font-sans focus:outline-none focus:border-[#1560bd] transition-colors"
-                />
-              </div>
-              <textarea
-                placeholder="Write your message*"
-                rows={5}
-                className="w-full px-5 py-4 rounded-xl border border-gray-200 bg-white font-sans focus:outline-none focus:border-[#1560bd] transition-colors resize-none"
-              />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                className="flex items-center gap-3 cursor-pointer bg-[#fa8128] text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-[#1a1a1a]/90 transition-colors"
-              >
-                Request Free Consultation
-                <span className="w-8 h-8 rounded-full bg-white text-[#1a1a1a] flex items-center justify-center">
-                  <ArrowUpRight className="w-4 h-4" />
-                </span>
-              </motion.button>
-            </motion.form>
+              <p className="text-gray-600 font-sans mb-8">
+                Ready to transform your business? detailed consultation to discuss your specific needs and how we can help you achieve your goals.
+              </p>
+              <Link href="/book-consultation">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-3 cursor-pointer bg-[#fa8128] text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-[#1a1a1a]/90 transition-colors"
+                >
+                  Book Your Consultation Now
+                  <span className="w-8 h-8 rounded-full bg-white text-[#1a1a1a] flex items-center justify-center">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </span>
+                </motion.button>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>

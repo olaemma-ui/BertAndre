@@ -6,24 +6,26 @@ import Link from "next/link";
 
 interface PageHeroProps {
   title: string;
+  description?: string;
   breadcrumb: { label: string; href?: string }[];
+  backgroundImage?: string;
 }
 
-export function PageHero({ title, breadcrumb }: PageHeroProps) {
+export function PageHero({ title, description, breadcrumb, backgroundImage }: PageHeroProps) {
   return (
     <section className="relative h-[400px] lg:h-[450px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute h-full inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/images/business-meeting.webp')`,
+          backgroundImage: `url('${backgroundImage || '/images/factory-engineers-look-assembly-lines-designs-working-increase-output.jpg'}')`,
         }}
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-[#1a1a1a]/70" />
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* Content */}
-      <div className="relative z-10 text-center">
+      <div className="relative z-10 text-center container mx-auto px-4">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,6 +34,17 @@ export function PageHero({ title, breadcrumb }: PageHeroProps) {
         >
           {title}
         </motion.h1>
+
+        {description && (
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-white/80 text-lg md:text-xl font-sans max-w-2xl mx-auto mb-8"
+          >
+            {description}
+          </motion.p>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

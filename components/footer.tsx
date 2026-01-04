@@ -1,41 +1,65 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Facebook, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Linkedin, Instagram, Music as Tiktok } from "lucide-react";
 import Image from "next/image";
 
-const quickLinks = [
-  "About Us",
-  "Our Team",
-  "Pricing Plans",
-  "Blogs",
-  "Contact Us",
-];
 
-const services = [
-  "UI/UX Design",
-  "App Development",
-  "Digital Marketing",
-  "Web Development",
-  "Cyber Security",
-];
+
+import { Service } from "@/lib/services";
 
 const information = [
-  "Working Process",
   "Privacy Policy",
   "Terms & Conditions",
   "FAQ",
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "#" },
-  { icon: Linkedin, href: "#" },
-  { icon: Twitter, href: "#" },
-  { icon: Instagram, href: "#" },
+  // { icon: Facebook, href: "#" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/bertandre-consulting/" },
+  { icon: Tiktok, href: "https://www.tiktok.com/@bertandreconsulting?_r=1&_t=ZS-91feNqOsNyK" },
+  { icon: Instagram, href: "https://www.instagram.com/bertandreconsulting?igsh=azNxcDhsYmE0MXFt" },
 ];
 
 export function Footer() {
+  const [settings, setSettings] = useState<Record<string, string>>({
+    contact_email: "info@bertandreconsulting.com",
+    contact_phone: "0201 330 0667",
+    contact_address_ng: "20 Awudu epheka, Lekki Phase 1, Lagos, Nigeria",
+    office_hours: "Mon–Fri | 8AM – 4PM (WAT)",
+  });
+  const [services, setServices] = useState<Service[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch settings and services in parallel
+        const [settingsRes, servicesRes] = await Promise.all([
+          fetch("/api/settings"),
+          fetch("/api/services?limit=10")
+        ]);
+
+        if (settingsRes.ok) {
+          const data = await settingsRes.json();
+          if (Object.keys(data).length > 0) {
+            setSettings(prev => ({ ...prev, ...data }));
+          }
+        }
+
+        if (servicesRes.ok) {
+          const data = await servicesRes.json();
+          setServices(data.services || []);
+        }
+      } catch (error) {
+        console.error("Error fetching footer data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <footer className="bg-[#1560bd] text-white">
       {/* Main Footer */}
@@ -88,16 +112,21 @@ export function Footer() {
           >
             <h4 className="font-serif font-bold text-lg mb-6">Quick Link</h4>
             <ul className="space-y-4">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href="#"
-                    className="text-white/70 font-sans hover:text-white transition-colors"
-                  >
-                    {link}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="/about" className="text-white/70 font-sans hover:text-white transition-colors">About Us</Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-white/70 font-sans hover:text-white transition-colors">Our Team</Link>
+              </li>
+              <li>
+                <Link href="/projects" className="text-white/70 font-sans hover:text-white transition-colors">Projects</Link>
+              </li>
+              <li>
+                <Link href="/blogs" className="text-white/70 font-sans hover:text-white transition-colors">Blogs</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-white/70 font-sans hover:text-white transition-colors">Contact Us</Link>
+              </li>
             </ul>
           </motion.div>
 
@@ -113,10 +142,10 @@ export function Footer() {
               {services.map((service, index) => (
                 <li key={index}>
                   <Link
-                    href="#"
+                    href={`/services/${service.slug}`}
                     className="text-white/70 font-sans hover:text-white transition-colors"
                   >
-                    {service}
+                    {service.title}
                   </Link>
                 </li>
               ))}
@@ -135,7 +164,7 @@ export function Footer() {
               {information.map((info, index) => (
                 <li key={index}>
                   <Link
-                    href="#"
+                    href={`/${info.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`}
                     className="text-white/70 font-sans hover:text-white transition-colors"
                   >
                     {info}
@@ -148,32 +177,35 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t bg-[#fa8128] border-white/10">
+      <div className="border-t bg-[#1560bd] border-white/10">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-white font-sans md:text-left text-center text-sm">
-              Copyright ©2025 BertAndre Consulting. All rights reserved.
+            <p className="text-white/80 leading-relaxed mb-0">
+              {settings.contact_address_ng} <br />
+              {settings.contact_address_us}
             </p>
-            <div className="flex items-center gap-6">
-              <Link
-                href="#"
-                className="text-white font-sans text-sm hover:text-white/60 transition-colors"
+            <div className="space-y-2 text-right">
+              <a
+                href={`mailto:${settings.contact_email}`}
+                className="block text-white hover:text-[#fa8128] transition-colors"
               >
-                Privacy Policy
-              </Link>
-              <Link
-                href="#"
-                className="text-white font-sans text-sm hover:text-white/60 transition-colors"
+                {settings.contact_email}
+              </a>
+              <a
+                href={`tel:${settings.contact_phone.replace(/\s/g, '')}`}
+                className="block text-white hover:text-[#fa8128] transition-colors"
               >
-                FAQ
-              </Link>
-              <Link
-                href="#"
-                className="text-white font-sans text-sm hover:text-white/60 transition-colors"
-              >
-                Contact
-              </Link>
-            </div>
+                {settings.contact_phone}
+              </a>
+              <span className="block text-sm text-white/60 mt-2">
+                {settings.office_hours}
+              </span>
+            </div>  <Link
+              href="/contact"
+              className="text-white font-sans text-sm hover:text-white/60 transition-colors"
+            >
+              Contact
+            </Link>
           </div>
         </div>
       </div>

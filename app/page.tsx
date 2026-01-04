@@ -7,19 +7,22 @@ import { BlogSection } from "@/components/blog-section";
 import { FAQSection } from "@/components/faq-section";
 import { ConsultationSection } from "@/components/consultation-section";
 import { Footer } from "@/components/footer";
+import { getFAQs } from "@/lib/db";
 
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-white">
-      <Header />
-      <HeroSection />
-      <AboutSection />
-      <WhyChooseSection />
-      <RecentProjectsSection />
-      <BlogSection />
-      <FAQSection />
-      <ConsultationSection />
-      <Footer />
-    </main>
-  );
+export default async function Home() {
+    const { faqs } = await getFAQs();
+
+    return (
+        <main className="min-h-screen bg-white">
+            <Header />
+            <HeroSection />
+            <AboutSection />
+            <WhyChooseSection />
+            <RecentProjectsSection />
+            <BlogSection />
+            <FAQSection faqs={faqs} />
+            <ConsultationSection />
+            <Footer />
+        </main>
+    );
 }

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle } from "lucide-react";
 import Image from "next/image";
-import { ReactNode } from "react";
+
 
 const checkItems = [
   "Integrate a diverse range of ideas",
@@ -11,90 +11,7 @@ const checkItems = [
   "Believe in power of implication",
 ];
 
-const logos = [
-  "ogitech",
-  "Google",
-  "CHASE",
-  "factual",
-  "Matrixian",
-  "logitech",
-  "Google",
-  "ogitech",
-  "Google",
-  "CHASE",
-  "factual",
-  "Matrixian",
-  "logitech",
-  "Google",
-  "ogitech",
-  "Google",
-  "CHASE",
-  "factual",
-  "Matrixian",
-  "logitech",
-  "Google",
-];
 
-// Marquee component for scrolling logos
-function Marquee({
-  children,
-  direction = "left",
-  pauseOnHover = true,
-  className = "",
-}: {
-  children: ReactNode;
-  direction?: "left" | "right";
-  pauseOnHover?: boolean;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`relative flex w-full overflow-hidden ${className}`}
-      style={{
-        maskImage:
-          "linear-gradient(to right, rgba(0,0,0,0) 0%, rgb(0,0,0) 12.5%, rgb(0,0,0) 87.5%, rgba(0,0,0,0) 100%)",
-        WebkitMaskImage:
-          "linear-gradient(to right, rgba(0,0,0,0) 0%, rgb(0,0,0) 12.5%, rgb(0,0,0) 87.5%, rgba(0,0,0,0) 100%)",
-      }}
-    >
-      <div
-        className={`flex w-max animate-marquee-${direction} ${
-          pauseOnHover ? "hover:[animation-play-state:paused]" : ""
-        }`}
-      >
-        {Array.from({ length: 10 }).map((_, idx) => (
-          <div key={idx} className="flex items-center gap-16 md:gap-24">
-            {children}
-          </div>
-        ))}
-      </div>
-      <style jsx>{`
-        @keyframes marquee-left {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
-        }
-        @keyframes marquee-right {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-        .animate-marquee-left {
-          animation: marquee-left 125s linear infinite;
-        }
-        .animate-marquee-right {
-          animation: marquee-right 125s linear infinite;
-        }
-      `}</style>
-    </div>
-  );
-}
 
 export function AboutSection() {
   return (
@@ -116,10 +33,10 @@ export function AboutSection() {
                 style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
               >
                 <Image
-                  src="/images/business-meeting.webp"
-                  alt="Business professional working"
+                  src="/images/business-colleagues-studying-reports.jpg"
+                  alt="Business meeting"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
 
@@ -135,7 +52,7 @@ export function AboutSection() {
                 style={{ clipPath: "polygon(100% 0, 100% 100%, 0 100%)" }}
               >
                 <Image
-                  src="/images/business-meeting.webp"
+                  src="/images/business-colleagues-studying-reports.jpg"
                   alt="Team collaboration"
                   fill
                   className="object-cover"
@@ -159,28 +76,20 @@ export function AboutSection() {
           >
             {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 border border-gray-200 px-5 py-2 rounded-full mb-6"
             >
-              <span className="text-[#1560bd]">+</span>
-              <span className="text-sm font-sans font-medium text-[#1a1a1a]">
-                Our Company
+              <span className="inline-block px-4 py-2 rounded-full border border-[#1560bd]/20 bg-[#eff6ff] text-sm font-sans text-[#1560bd] mb-6 font-semibold">
+                About BertAndre
               </span>
-              <span className="text-[#1560bd]">+</span>
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#1a1a1a] mb-8 leading-tight">
+                We’re not just consultants — we’re your growth partners.
+              </h2>
+              <p className="text-lg text-gray-600 mb-8 font-sans leading-relaxed">
+                Started in Lagos and now global, we’re deeply rooted in the business landscape. BertAndre Consulting offers tailored solutions that blend data-driven insight with real-world experience. Whether you're launching a startup, scaling a business, or investing for the future, we’re here to help you move with clarity and confidence.
+              </p>
             </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#1a1a1a] leading-tight mb-6"
-            >
-              Redesigning business for solutions
-            </motion.h2>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -227,27 +136,7 @@ export function AboutSection() {
             </motion.button>
           </motion.div>
         </div>
-
-        {/* Logo Bar with Marquee */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 pt-12 border-t border-gray-100"
-        >
-          <Marquee className="py-4">
-            {logos.map((logo, index) => (
-              <span
-                key={index}
-                className="text-gray-400 font-sans font-medium text-lg mx-8 md:mx-12-"
-              >
-                {logo}
-              </span>
-            ))}
-          </Marquee>
-        </motion.div>
       </div>
-    </section>
+    </section >
   );
 }

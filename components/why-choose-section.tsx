@@ -10,18 +10,7 @@ const stats = [
   { number: "25+", label: "Years experiences" },
 ];
 
-const features = [
-  {
-    icon: Trophy,
-    title: "99% Winning Guarantee",
-    description: "The solar solution company specializes innovative.",
-  },
-  {
-    icon: Headphones,
-    title: "Full Time Support",
-    description: "The solar solution company specializes innovative.",
-  },
-];
+
 
 export function WhyChooseSection() {
   return (
@@ -51,7 +40,7 @@ export function WhyChooseSection() {
               transition={{ delay: 0.1 }}
               className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight mb-6"
             >
-              Supporting Growth on a Global Scale
+              Impact Over Hype. Value That Lasts.
             </motion.h2>
 
             <motion.p
@@ -61,33 +50,46 @@ export function WhyChooseSection() {
               transition={{ delay: 0.2 }}
               className="text-white/70 font-sans leading-relaxed mb-10"
             >
-              The solar solution company specializes in providing innovative,
-              eco-friendly energy systems that harness the power, reducing
-              carbon footprints and energy for clients worldwide.
+              At BertAndre Consulting, we don’t just give advice—we give direction. We bridge the knowledge gap, empower clients with clarity, and become trusted partners in your journey toward success.
             </motion.p>
 
             {/* Feature Cards */}
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  className="bg-white/5 backdrop-blur-xs- rounded-xl p-5"
-                >
-                  <div className="w-10 h-10 rounded-full bg-[#fa8128]/20 flex items-center justify-center mb-4">
-                    <feature.icon className="w-5 h-5 text-[#fa8128]" />
-                  </div>
-                  <h3 className="font-serif font-bold text-white mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-white/60 font-sans">
-                    {feature.description}
-                  </p>
-                </motion.div>
-              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="bg-white/5 backdrop-blur-xs- rounded-xl p-5"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#fa8128]/20 flex items-center justify-center mb-4">
+                  <Trophy className="w-5 h-5 text-[#fa8128]" />
+                </div>
+                <h3 className="font-serif font-bold text-white mb-2">
+                  Precision & Clarity
+                </h3>
+                <p className="text-sm text-white/60 font-sans">
+                  We don’t do vague. Every solution is sharp, strategic, and rooted in data.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="bg-white/5 backdrop-blur-xs- rounded-xl p-5"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#fa8128]/20 flex items-center justify-center mb-4">
+                  <Headphones className="w-5 h-5 text-[#fa8128]" />
+                </div>
+                <h3 className="font-serif font-bold text-white mb-2">
+                  Innovation with Purpose
+                </h3>
+                <p className="text-sm text-white/60 font-sans">
+                  We embrace technology and new thinking, only when it serves your long-term goals.
+                </p>
+              </motion.div>
             </div>
 
             {/* CTA Button */}
@@ -117,8 +119,8 @@ export function WhyChooseSection() {
           >
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
               <Image
-                src="/images/business-meeting.webp"
-                alt="Team collaboration"
+                src="/images/tech-consulting-office.png"
+                alt="Business meeting"
                 fill
                 className="object-cover"
               />
@@ -134,16 +136,14 @@ export function WhyChooseSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + index * 0.15 }}
-                className={`w-40 h-40 rounded-full flex flex-col items-center justify-center ${
-                  index === 1
-                    ? "bg-white text-[#1a1a1a] ml-auto lg:ml-8"
-                    : "bg-[#1a1a1a] border-2 border-white/20 text-white"
-                }`}
+                className={`w-40 h-40 rounded-full flex flex-col items-center justify-center ${index === 1
+                  ? "bg-white text-[#1a1a1a] ml-auto lg:ml-8"
+                  : "bg-[#1a1a1a] border-2 border-white/20 text-white"
+                  }`}
               >
                 <span
-                  className={`text-3xl font-serif font-bold ${
-                    index === 1 ? "text-[#1560bd]" : ""
-                  }`}
+                  className={`text-3xl font-serif font-bold ${index === 1 ? "text-[#1560bd]" : ""
+                    }`}
                 >
                   {stat.number}
                 </span>

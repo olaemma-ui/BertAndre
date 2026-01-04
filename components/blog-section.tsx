@@ -1,135 +1,168 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { ArrowUpRight, User, Calendar } from "lucide-react"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ArrowUpRight, User, Calendar, Loader2, BookOpen } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
-const blogs = [
-  {
-    title: "Empowering entrepreneu fueling growth knowledge",
-    author: "Bret",
-    date: "Sep 10, 2026",
-    image: "/two-businessmen-working-at-laptop-in-cafe.jpg",
-    featured: true,
-  },
-  {
-    title: "Grow Your Business, Cut Office Costs by 70%",
-    author: "Antonette",
-    date: "Sep 11, 2026",
-    image: "/business-team-meeting.png",
-  },
-  {
-    title: "Powering Business— Always On, Always Ready",
-    author: "Samantha",
-    date: "Oct 21, 2026",
-    image: "/woman-working-on-laptop-in-office.jpg",
-  },
-  {
-    title: "Innovative solutions for business success dynamic from today",
-    author: "Samantha",
-    date: "Jun 12, 2026",
-    image: "/diverse-business-team-collaboration.jpg",
-  },
-]
+interface BlogPost {
+    title: string;
+    excerpt: string;
+    content: string;
+    category: string;
+    author: string;
+    imageUrl: string;
+    date: string;
+    slug: string;
+}
 
 export function BlogSection() {
-  return (
-    <section className="py-20 lg:py-32 bg-gray-50 overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Featured Blog */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="group"
-          >
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
-              <Image
-                src={blogs[0].image || "/placeholder.svg"}
-                alt={blogs[0].title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div className="flex items-center gap-4 text-sm text-gray-500 font-sans mb-4">
-              <span className="flex items-center gap-2">
-                <User className="w-4 h-4" />
-                {blogs[0].author}
-              </span>
-              <span className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                {blogs[0].date}
-              </span>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-serif font-bold text-[#1a1a1a] leading-tight group-hover:text-[#1560bd] transition-colors">
-              {blogs[0].title}
-            </h3>
-          </motion.div>
+    const [blogs, setBlogs] = useState<BlogPost[]>([])
+    const [loading, setLoading] = useState(true)
 
-          {/* Blog List */}
-          <div className="flex flex-col gap-6">
-            {blogs.slice(1).map((blog, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex gap-6 group"
-              >
-                <div className="relative w-40 h-28 flex-shrink-0 rounded-xl overflow-hidden">
-                  <Image
-                    src={blog.image || "/placeholder.svg"}
-                    alt={blog.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-4 text-xs text-gray-500 font-sans mb-2">
-                    <span className="flex items-center gap-1">
-                      <User className="w-3 h-3" />
-                      {blog.author}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
-                      {blog.date}
-                    </span>
-                  </div>
-                  <h4 className="font-serif font-bold text-[#1a1a1a] leading-tight mb-2 group-hover:text-[#1560bd] transition-colors">
-                    {blog.title}
-                  </h4>
-                  <button className="flex items-center gap-2 text-sm font-sans font-medium text-[#1a1a1a] hover:text-[#1560bd] transition-colors">
-                    Read More
-                    <ArrowUpRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const res = await fetch("/api/blogs")
+                const data = await res.json()
+                // Take only first 4 blogs for the homepage
+                setBlogs(data.blogs.slice(0, 4))
+            } catch (error) {
+                console.error("Error fetching blogs:", error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchBlogs()
+    }, [])
 
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="flex justify-center mt-16"
-        >
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex items-center gap-3 bg-[#1a1a1a] text-white px-8 py-4 rounded-full font-sans font-medium hover:bg-[#1a1a1a]/90 transition-colors"
-          >
-            Discover More
-            <span className="w-8 h-8 rounded-full bg-white text-[#1a1a1a] flex items-center justify-center">
-              <ArrowUpRight className="w-4 h-4" />
-            </span>
-          </motion.button>
-        </motion.div>
-      </div>
-    </section>
-  )
+    if (loading) {
+        return (
+            <section className="py-20 lg:py-32 bg-gray-50 flex items-center justify-center min-h-[400px]">
+                <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="w-8 h-8 animate-spin text-[#1560bd]" />
+                    <p className="text-gray-400 font-sans">Curating latest insights...</p>
+                </div>
+            </section>
+        )
+    }
+
+    if (!loading && blogs.length === 0) {
+        return null // Hide section if no blogs
+    }
+
+    const featuredBlog = blogs[0]
+    const secondaryBlogs = blogs.slice(1)
+
+    return (
+        <section className="py-20 lg:py-32 bg-gray-50 overflow-hidden">
+            <div className="container mx-auto px-6">
+                <div className="mb-16">
+                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#1a1a1a] mb-4">Latest Insights</h2>
+                    <p className="text-gray-600 max-w-xl">Thought leadership and updates from the world of business, finance, and technology.</p>
+                </div>
+
+                <div className="grid lg:grid-cols-2 gap-12">
+                    {/* Featured Blog */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="group"
+                    >
+                        <Link href={`/blogs/${featuredBlog.slug}`} className="block">
+                            <div className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-8 shadow-2xl shadow-blue-500/5">
+                                <Image
+                                    src={featuredBlog.imageUrl || "/placeholder.svg"}
+                                    alt={featuredBlog.title}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute top-6 left-6">
+                                    <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold text-[#1560bd] uppercase tracking-widest shadow-lg">
+                                        {featuredBlog.category}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-6 text-sm text-gray-400 font-sans mb-4">
+                                <span className="flex items-center gap-2">
+                                    <User className="w-4 h-4 text-[#1560bd]" />
+                                    {featuredBlog.author}
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <Calendar className="w-4 h-4 text-[#fa8128]" />
+                                    {new Date(featuredBlog.date).toLocaleDateString()}
+                                </span>
+                            </div>
+                            <h3 className="text-2xl md:text-4xl font-serif font-bold text-[#1a1a1a] leading-tight group-hover:text-[#1560bd] transition-colors mb-4">
+                                {featuredBlog.title}
+                            </h3>
+                            <p className="text-gray-600 line-clamp-2 mb-6 leading-relaxed">
+                                {featuredBlog.excerpt}
+                            </p>
+                            <span className="inline-flex items-center gap-2 text-[#1560bd] font-bold tracking-wide group/btn">
+                                READ STORY
+                                <ArrowUpRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                            </span>
+                        </Link>
+                    </motion.div>
+
+                    {/* Blog List */}
+                    <div className="flex flex-col gap-10">
+                        {secondaryBlogs.map((blog, index) => (
+                            <motion.div
+                                key={blog.slug}
+                                initial={{ opacity: 0, x: 30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                            >
+                                <Link href={`/blogs/${blog.slug}`} className="flex gap-6 group">
+                                    <div className="relative w-32 h-32 md:w-48 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg shadow-gray-200">
+                                        <Image
+                                            src={blog.imageUrl || "/placeholder.svg"}
+                                            alt={blog.title}
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
+                                    </div>
+                                    <div className="flex-1 flex flex-col justify-center gap-3">
+                                        <div className="flex items-center gap-4 text-[10px] md:text-xs text-gray-400 font-sans font-bold uppercase tracking-wider">
+                                            <span className="text-[#1560bd]">{blog.category}</span>
+                                            <span>{new Date(blog.date).toLocaleDateString()}</span>
+                                        </div>
+                                        <h4 className="font-serif font-bold text-lg md:text-xl text-[#1a1a1a] leading-tight group-hover:text-[#1560bd] transition-colors line-clamp-2">
+                                            {blog.title}
+                                        </h4>
+                                        <span className="flex items-center gap-2 text-xs font-bold text-gray-900 group-hover:text-[#fa8128] transition-colors">
+                                            CONTINUE READING
+                                            <ArrowUpRight className="w-4 h-4" />
+                                        </span>
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* CTA Button */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                    className="flex justify-center mt-20"
+                >
+                    <Link href="/blogs">
+                        <Button variant="premium" className="h-16 px-10 rounded-full text-lg shadow-2xl shadow-blue-500/20">
+                            Explore the Newsroom
+                            <ArrowUpRight className="w-5 h-5 ml-2" />
+                        </Button>
+                    </Link>
+                </motion.div>
+            </div>
+        </section>
+    )
 }

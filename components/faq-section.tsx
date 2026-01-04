@@ -3,36 +3,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ChevronDown, ArrowUpRight } from "lucide-react";
+import { FAQ } from "@/lib/db";
 
-const faqs = [
-  {
-    question: "What warranties do I have for installation?",
-    answer:
-      "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady. The point of using is that it has a mores normal fact that a reader will be distracted by the readable content.",
-  },
-  {
-    question: "How long does it take to build a new website?",
-    answer:
-      "The timeline depends on the complexity of your project. A simple website can take 2-4 weeks, while more complex projects with custom features may take 6-12 weeks. We'll provide a detailed timeline during our initial consultation.",
-  },
-  {
-    question: "What do you need to start making me a website?",
-    answer:
-      "We'll need your brand assets (logo, colors, fonts), content (text, images), a clear understanding of your goals, and examples of websites you admire. We'll guide you through our onboarding process to gather everything needed.",
-  },
-  {
-    question: "How to soft launch your business?",
-    answer:
-      "A soft launch involves releasing your product to a limited audience first. This allows you to gather feedback, identify issues, and make improvements before a full public launch. We can help you strategize the best approach.",
-  },
-  {
-    question: "How does the trial work?",
-    answer:
-      "Our trial period gives you full access to our services for 14 days. You can explore all features, work with our team, and see the quality of our deliverables before making any commitment.",
-  },
-];
+interface FAQSectionProps {
+  faqs: FAQ[];
+}
 
-export function FAQSection() {
+export function FAQSection({ faqs }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
@@ -97,27 +74,24 @@ export function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`rounded-xl overflow-hidden transition-colors ${
-                  openIndex === index ? "bg-[#1560bd]" : "bg-gray-100"
-                }`}
+                className={`rounded-xl overflow-hidden transition-colors ${openIndex === index ? "bg-[#1560bd]" : "bg-gray-100"
+                  }`}
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
                   className="w-full flex items-center justify-between p-6 text-left"
                 >
                   <h3
-                    className={`font-serif font-bold text-lg pr-4 ${
-                      openIndex === index ? "text-white" : "text-[#1a1a1a]"
-                    }`}
+                    className={`font-serif font-bold text-lg pr-4 ${openIndex === index ? "text-white" : "text-[#1a1a1a]"
+                      }`}
                   >
                     {faq.question}
                   </h3>
                   <span
-                    className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      openIndex === index
-                        ? "bg-[#fa8128] text-white"
-                        : "bg-[#fa8128] text-white"
-                    }`}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${openIndex === index
+                      ? "bg-[#fa8128] text-white"
+                      : "bg-[#fa8128] text-white"
+                      }`}
                   >
                     {openIndex === index ? (
                       <ChevronUp className="w-5 h-5" />

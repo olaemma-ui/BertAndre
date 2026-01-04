@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Berta Estate Hub App",
+        "slug": "berta-estate-hub-app",
+        "category": "Property Management",
+        "image": "/images/vintage-style-people-working-office-with-computers.jpg",
+        "description": "A comprehensive property management solution simplifying billing, payments, and complaint handling for tenants and estate managers.",
+        "detailedDescription": "<p>Berta Estate Hub is a robust property management ecosystem designed to bridge the gap between tenants, estate managers, and finance teams.</p><br/><h3>Core Goals:</h3><ul><li><strong>Improve tenant satisfaction</strong>: Simplify billing and payments via a user-friendly mobile app.</li><li><strong>Streamline Operations</strong>: Reduce manual reconciliation time for finance staff.</li><li><strong>Enhance Transparency</strong>: Provide digital receipts and real-time ticket tracking.</li></ul><br/><p>The platform consists of two main components: a <strong>Tenant Mobile App</strong> (iOS/Android) for managing bills, utilities, and complaints, and a powerful <strong>Admin Web Dashboard</strong> for estate managers to oversee operations, billing, and reporting.</p><br/><p>Our team worked closely with stakeholders to identify key challenges and opportunities. Through a combination of innovative technology and strategic planning, we were able to deliver a solution that not only met but exceeded expectations. The project has set a new benchmark for efficiency and sustainability in the sector.</p>",
+        "modules": [
+            {
+                "title": "Tenant Mobile App",
+                "description": "Allows tenants to view/pay service charges, buy meter units, track complaints, and manage their profile. Features a digital wallet and secure Flutterwave payment integration.",
+                "image": "/images/business-colleagues-studying-reports.jpg"
+            },
+            {
+                "title": "Admin Web Dashboard",
+                "description": "A centralized hub for Estate Managers and Finance Officers to manage tenants, create service charges, reconcile payments, and view analytics.",
+                "image": "/images/vintage-style-people-working-office-with-computers.jpg"
+            },
+            {
+                "title": "Smart Billing & Payments",
+                "description": "Automated billing for service charges and utilities. Supports manual bill creation, recurring templates, and instant digital receipts via Flutterwave.",
+                "image": "/images/man-sitting-down-office-job-interview-desk-with-his-employers.jpg"
+            }
+        ],
+        "gallery": [
+            {
+                "type": "image",
+                "src": "/images/vintage-style-people-working-office-with-computers.jpg",
+                "alt": "Berta Estate Hub Dashboard"
+            },
+            {
+                "type": "image",
+                "src": "/images/business-colleagues-studying-reports.jpg",
+                "alt": "Mobile App Interface"
+            }
+        ],
+        "iosLink": "#",
+        "androidLink": "#",
+        "externalLink": "https://Berta Estate Hub.com"
+    }
+]

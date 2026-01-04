@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const items = [
   {
-    title: "About Us",  
+    title: "About Us",
     content:
       "At BertAndre Consulting, we believe consulting should do more than give advice, it should move people, shift perspectives, and create lasting change. That’s why we exist: to help you unlock smarter opportunities through strategic guidance, personalized solutions, and a commitment to real, measurable growth.",
   },
@@ -50,18 +50,25 @@ export default function WhyUs() {
       {/* LEFT IMAGE */}
       <div className="relative">
         <Image
-          src="/images/business-meeting.webp" // replace with your actual image
-          alt="BertAndre Consulting"
-          //   fill
-          width={1000}
-          height={1000}
-          className="object-cover h-full w-full"
+          src="/images/factory-engineers-look-assembly-lines-designs-working-increase-output.jpg" // replace with your actual image
+          alt="Why choose us background"
+          layout="fill"
+          objectFit="cover"
+          className="bg-fixed"
         />
       </div>
 
       {/* RIGHT CONTENT */}
-      <div className="p-6 md:p-12 lg:p-20 flex flex-col gap-8">
-        
+      <div className="p-6 md:p-12 lg:p-20 lg:pt-8 flex flex-col gap-8">
+
+        <div className="">
+          <h3 className="text-2xl md:text-2xl lg:text-2xl font-serif font-bold text-[#1a1a1a]">
+            Your Partner for
+          </h3>
+          <h4 className="text-xl font-sans font-semibold text-[#1a1a1a] mb-6">
+            Strategic Advice. Smart Investments. Sustainable Growth.
+          </h4>
+        </div>
 
         <div className="space-y-4">
           {items.map((item, index) => {
