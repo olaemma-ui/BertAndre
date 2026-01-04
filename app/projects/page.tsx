@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 export default async function ProjectsPage() {
-    const projects = await getProjects();
+    const { projects } = await getProjects();
     return (
         <main className="min-h-screen bg-white">
             <Header />

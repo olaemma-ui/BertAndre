@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 }
 
 export async function generateStaticParams() {
-    const projects = await getProjects();
+    const { projects } = await getProjects();
     return projects.map((project) => ({
         slug: project.slug,
     }));

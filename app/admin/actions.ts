@@ -27,10 +27,16 @@ export async function saveProject(prevState: any, formData: FormData) {
 
     // Modules parsing (simple 3-item limit for demo or robust parsing)
     // For simplicity, we'll just check for module fields like 'module-0-title'
+    const isEdit = formData.get("isEdit") === "true";
+    const existingSlug = formData.get("slug") as string;
+    const slug = isEdit ? existingSlug : slugify(title);
+
+    // Modules parsing
     const modules = [];
     let i = 0;
     while (formData.get(`module-${i}-title`)) {
         modules.push({
+            project_slug: slug,
             title: formData.get(`module-${i}-title`) as string,
             description: formData.get(`module-${i}-description`) as string,
             image: formData.get(`module-${i}-image`) as string,
@@ -43,6 +49,7 @@ export async function saveProject(prevState: any, formData: FormData) {
     let j = 0;
     while (formData.get(`gallery-${j}-url`)) {
         gallery.push({
+            project_slug: slug,
             type: formData.get(`gallery-${j}-type`) as "image" | "video",
             url: formData.get(`gallery-${j}-url`) as string,
             caption: formData.get(`gallery-${j}-caption`) as string,
@@ -50,20 +57,19 @@ export async function saveProject(prevState: any, formData: FormData) {
         j++;
     }
 
-    const isEdit = formData.get("isEdit") === "true";
-    const existingSlug = formData.get("slug") as string;
-
-    const slug = isEdit ? existingSlug : slugify(title);
-
     const project: Project = {
         title,
         slug,
         category,
         image,
         description,
+        detailed_description: detailedDescription,
         detailedDescription,
+        external_link: externalLink,
         externalLink,
+        ios_link: iosLink,
         iosLink,
+        android_link: androidLink,
         androidLink,
         modules,
         gallery,

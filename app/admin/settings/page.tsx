@@ -12,6 +12,7 @@ export default function AdminSettingsPage() {
         contact_email: "",
         contact_phone: "",
         contact_address_ng: "",
+        contact_address_us: "",
         office_hours: "",
     });
     const [loading, setLoading] = useState(true);
@@ -72,7 +73,7 @@ export default function AdminSettingsPage() {
     }
 
     return (
-        <div className="space-y-8 max-w-7xl mx-aut">
+        <div className="space-y-8 max-w-7xl mx-auto">
             <div>
                 <h1 className="text-3xl font-bold font-serif text-gray-900">Site Settings</h1>
                 <p className="text-gray-500 mt-1">Manage global configuration and contact information.</p>
@@ -132,6 +133,20 @@ export default function AdminSettingsPage() {
                             value={settings.contact_address_ng}
                             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChange("contact_address_ng", e.target.value)}
                             placeholder="20 Awudu epheka, Lekki Phase 1, Lagos, Nigeria"
+                            className="rounded-xl min-h-[100px]"
+                        />
+                    </div>
+
+                    {/* Address US */}
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                        <div className="flex items-center gap-2 text-[#1560bd]">
+                            <MapPin className="w-5 h-5" />
+                            <h2 className="font-bold text-lg">US Office Address</h2>
+                        </div>
+                        <Textarea
+                            value={settings.contact_address_us}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChange("contact_address_us", e.target.value)}
+                            placeholder="US: 8 The Green Suite 4000 Dover, DE 19901"
                             className="rounded-xl min-h-[100px]"
                         />
                     </div>

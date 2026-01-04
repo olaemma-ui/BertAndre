@@ -7,64 +7,67 @@ import { FAQ } from "@/lib/db";
 
 interface FAQSectionProps {
   faqs: FAQ[];
+  showHeader?: boolean;
 }
 
-export function FAQSection({ faqs }: FAQSectionProps) {
+export function FAQSection({ faqs, showHeader = true }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <section className="py-20 lg:py-28 bg-white">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className={showHeader ? "grid lg:grid-cols-2 gap-12 lg:gap-20" : "max-w-3xl mx-auto"}>
           {/* Left Column */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-block px-4 py-2 rounded-full border border-gray-200 text-sm font-sans text-[#1560bd] mb-6">
-              <span className="text-[#1560bd]">+</span> Questions{" "}
-              <span className="text-[#1560bd]">+</span>
-            </span>
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#1a1a1a] leading-tight mb-6">
-              Have any questions?
-              <br />
-              here some answers.
-            </h2>
-
-            <p className="text-gray-600 font-sans leading-relaxed mb-8 max-w-md">
-              In relation to websites and apps, UI design considers the look,
-              interactivity of the making product. It's all about making sure
-              that the user interface.
-            </p>
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-3 cursor-pointer bg-[#fa8128] text-white px-6 py-3 rounded-full font-sans font-medium"
+          {showHeader && (
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              Ask Your Question
-              <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                <ArrowUpRight className="w-4 h-4" />
+              <span className="inline-block px-4 py-2 rounded-full border border-gray-200 text-sm font-sans text-[#1560bd] mb-6">
+                <span className="text-[#1560bd]">+</span> Questions{" "}
+                <span className="text-[#1560bd]">+</span>
               </span>
-            </motion.button>
 
-            {/* Question Mark Decoration */}
-            <div className="hidden lg:block mt-12">
-              <span className="text-[120px] font-serif text-gray-100 select-none">
-                ?
-              </span>
-            </div>
-          </motion.div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#1a1a1a] leading-tight mb-6">
+                Have any questions?
+                <br />
+                here some answers.
+              </h2>
+
+              <p className="text-gray-600 font-sans leading-relaxed mb-8 max-w-md">
+                In relation to websites and apps, UI design considers the look,
+                interactivity of the making product. It's all about making sure
+                that the user interface.
+              </p>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-3 cursor-pointer bg-[#fa8128] text-white px-6 py-3 rounded-full font-sans font-medium"
+              >
+                Ask Your Question
+                <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
+                  <ArrowUpRight className="w-4 h-4" />
+                </span>
+              </motion.button>
+
+              {/* Question Mark Decoration */}
+              <div className="hidden lg:block mt-12">
+                <span className="text-[120px] font-serif text-gray-100 select-none">
+                  ?
+                </span>
+              </div>
+            </motion.div>
+          )}
 
           {/* Right Column - Accordion */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: showHeader ? 30 : 0 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: showHeader ? 0.2 : 0 }}
             className="space-y-4"
           >
             {faqs.map((faq, index) => (

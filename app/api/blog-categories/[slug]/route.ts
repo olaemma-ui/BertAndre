@@ -3,11 +3,12 @@ import { updateBlogCategory, deleteBlogCategory } from '@/lib/db';
 
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
     try {
+        const { slug } = await params;
         const body = await request.json();
-        const category = await updateBlogCategory(params.slug, body);
+        const category = await updateBlogCategory(slug, body);
 
         return NextResponse.json(category);
     } catch (error: any) {
@@ -20,10 +21,11 @@ export async function PUT(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
     try {
-        const success = await deleteBlogCategory(params.slug);
+        const { slug } = await params;
+        const success = await deleteBlogCategory(slug);
 
         if (!success) {
             return NextResponse.json(

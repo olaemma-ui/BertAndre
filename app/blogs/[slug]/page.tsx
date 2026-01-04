@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 }
 
 export async function generateStaticParams() {
-  const blogs = await getBlogs();
+  const { blogs } = await getBlogs();
   return blogs.map((blog) => ({
     slug: blog.slug,
   }));
