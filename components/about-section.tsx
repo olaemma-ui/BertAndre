@@ -3,17 +3,23 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 
 const checkItems = [
-  "Integrate a diverse range of ideas",
-  "Deliver the highest quality outcomes",
-  "Believe in power of implication",
+  "Integrating diverse ideas to create well-rounded solutions",
+  "Delivering consistently high-quality outcomes",
+  "Believing in the power of thoughtful implementation",
 ];
 
 
 
 export function AboutSection() {
+  const router = useRouter();
+
+  const handleAbout = () => {
+    router.push('/about')
+  }
   return (
     <section className="py-20 lg:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
@@ -84,10 +90,11 @@ export function AboutSection() {
                 About BertAndre
               </span>
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#1a1a1a] mb-8 leading-tight">
-                We’re not just consultants — we’re your growth partners.
+                We’re not just consultants. We’re your growth partners.
               </h2>
               <p className="text-lg text-gray-600 mb-8 font-sans leading-relaxed">
-                Started in Lagos and now global, we’re deeply rooted in the business landscape. BertAndre Consulting offers tailored solutions that blend data-driven insight with real-world experience. Whether you're launching a startup, scaling a business, or investing for the future, we’re here to help you move with clarity and confidence.
+                Founded in Lagos and now operating globally, we are deeply rooted in the realities of today’s business landscape. BertAndre Consulting delivers tailored solutions that combine data-driven insight with real-world experience.
+                Whether you’re launching a startup, scaling an existing business, or investing for the future, we help you move forward with clarity, confidence, and purpose.
               </p>
             </motion.div>
 
@@ -98,8 +105,7 @@ export function AboutSection() {
               transition={{ delay: 0.5 }}
               className="text-gray-600 font-sans leading-relaxed mb-8"
             >
-              Our mission is to empowers businesses off all size to thrive in an
-              our businesses ever changing marketplace.
+              To empower businesses of all sizes to thrive in an ever-changing marketplace.
             </motion.p>
 
             {/* Check Items */}
@@ -121,6 +127,7 @@ export function AboutSection() {
 
             {/* CTA Button */}
             <motion.button
+              onClick={handleAbout}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

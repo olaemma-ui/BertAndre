@@ -42,6 +42,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     const { slug } = await params;
     const project = await getProjectBySlug(slug);
 
+    console.log({ project });
+
     if (!project) {
         notFound();
     }
@@ -51,15 +53,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <Header />
 
             {/* Hero Section */}
-            <section className="relative h-[60vh] -top-20 min-h-[500px] flex items-end pb-20 overflow-hidden">
+            <section className="relative h-[60vh] -top-22 min-h-[700px] flex items-center pb-20 overflow-hidden">
                 <Image
                     src={project.image}
                     alt={project.title}
-                    fill
-                    className="object-cover"
+                    width={1920}
+                    height={1080}
+                    className="object-cover absolute top-0 left-0 w-full h-full max-h-[820px]"
                     priority
                 />
-                <div className="absolute bg-gradient-to-b from-black/80 via-black/40 to-black/20 -top-20 z-10 min-h-[700px] w-full" />
+                <div className="absolute bg-linear-to-b from-black/80 via-black/40 to-black/20 -top-20 z-10 min-h-[800px] h-full w-full" />
 
                 <div className="container mx-auto px-6 relative z-10">
                     <Link
@@ -85,7 +88,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </section>
 
             {/* Main Content */}
-            <section className="py-20 lg:py-32">
+            <section className="py-20 lg:py-32 pt-0!">
                 <div className="container mx-auto px-6">
                     <div className="grid lg:grid-cols-12 gap-12 lg:gap-24">
 

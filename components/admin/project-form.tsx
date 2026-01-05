@@ -46,6 +46,7 @@ export function ProjectForm({ project: initialProject }: ProjectFormProps) {
     const [galleryImageFiles, setGalleryImageFiles] = useState<{ [key: number]: File | null }>({});
 
     const handleSubmit = async (e: React.FormEvent) => {
+        console.log(formData);
         e.preventDefault();
 
         if (!formData.title || (!formData.image && !mainImageFile) || !formData.description) {
@@ -91,6 +92,8 @@ export function ProjectForm({ project: initialProject }: ProjectFormProps) {
                 gallery: updatedGallery,
                 slug: formData.slug || formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
             };
+
+            console.log({ finalData });
 
             const url = isEdit ? `/api/projects/${formData.slug}` : "/api/projects";
             const method = isEdit ? "PUT" : "POST";
@@ -293,6 +296,7 @@ export function ProjectForm({ project: initialProject }: ProjectFormProps) {
                                     label="Featured Cover Image"
                                     value={formData.image}
                                     deferred={true}
+                                    file={mainImageFile}
                                     onFileChange={setMainImageFile}
                                     onChange={(url) => setFormData({ ...formData, image: url })}
                                 />
@@ -303,6 +307,7 @@ export function ProjectForm({ project: initialProject }: ProjectFormProps) {
                                     label="Brand Icon / Logo"
                                     value={formData.icon_url}
                                     deferred={true}
+                                    file={iconFile}
                                     onFileChange={setIconFile}
                                     onChange={(url) => setFormData({ ...formData, icon_url: url })}
                                 />
@@ -432,6 +437,7 @@ export function ProjectForm({ project: initialProject }: ProjectFormProps) {
                                                     label="Module Visual"
                                                     value={module.image}
                                                     deferred={true}
+                                                    file={moduleImageFiles[idx]}
                                                     onFileChange={(file) => setModuleImageFiles(prev => ({ ...prev, [idx]: file }))}
                                                     onChange={(url) => updateModule(idx, { image: url })}
                                                 />
@@ -513,6 +519,7 @@ export function ProjectForm({ project: initialProject }: ProjectFormProps) {
                                                 label={item.type === 'image' ? "Gallery Asset" : "Video Poster"}
                                                 value={item.url}
                                                 deferred={true}
+                                                file={galleryImageFiles[idx]}
                                                 onFileChange={(file) => setGalleryImageFiles(prev => ({ ...prev, [idx]: file }))}
                                                 onChange={(url) => updateGalleryItem(idx, { url })}
                                             />

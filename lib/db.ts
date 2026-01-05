@@ -225,7 +225,11 @@ export async function createProject(project: Omit<Project, 'id' | 'created_at' |
             display_order: index,
         }));
 
-        await supabaseAdmin.from('project_modules').insert(modules);
+        const { error: insertError } = await supabaseAdmin.from('project_modules').insert(modules);
+        if (insertError) {
+            console.error('Error inserting project modules:', insertError);
+            throw insertError;
+        }
     }
 
     // Insert gallery items if provided
@@ -238,7 +242,11 @@ export async function createProject(project: Omit<Project, 'id' | 'created_at' |
             display_order: index,
         }));
 
-        await supabaseAdmin.from('project_gallery').insert(gallery);
+        const { error: galleryError } = await supabaseAdmin.from('project_gallery').insert(gallery);
+        if (galleryError) {
+            console.error('Error inserting project gallery:', galleryError);
+            throw galleryError;
+        }
     }
 
     return getProjectBySlug(project.slug);
@@ -268,73 +276,94 @@ export async function updateProject(slug: string, project: Partial<Project>): Pr
 
     if (error) {
         // Fallback: If columns are missing, retry with core fields only
-        if (error.code === 'PGRST204' && (error.message.includes('seo_') || error.message.includes('icon_url'))) {
-            console.warn('  ⚠️ Schema mismatch, retrying update with core fields only...');
-            const { data: retryData, error: retryError } = await supabaseAdmin
-                .from('projects')
-                .update({
-                    title: project.title,
-                    category: project.category,
-                    image: project.image,
-                    description: project.description,
-                    detailed_description: project.detailedDescription || project.detailed_description,
-                    external_link: project.externalLink || project.external_link,
-                    ios_link: project.iosLink || project.ios_link,
-                    android_link: project.androidLink || project.android_link,
-                    updated_at: new Date().toISOString(),
-                })
-                .eq('slug', slug)
-                .select()
-                .single();
+        // if (error.code === 'PGRST204' && (error.message.includes('seo_') || error.message.includes('icon_url'))) {
+        //     console.warn('  ⚠️ Schema mismatch, retrying update with core fields only...');
+        //     const { data: retryData, error: retryError } = await supabaseAdmin
+        //         .from('projects')
+        //         .update({
+        //             title: project.title,
+        //             category: project.category,
+        //             image: project.image,
+        //             description: project.description,
+        //             detailed_description: project.detailedDescription || project.detailed_description,
+        //             external_link: project.externalLink || project.external_link,
+        //             ios_link: project.iosLink || project.ios_link,
+        //             android_link: project.androidLink || project.android_link,
+        //             updated_at: new Date().toISOString(),
+        //         })
+        //         .eq('slug', slug)
+        //         .select()
+        //         .single();
 
-            if (retryError) throw retryError;
-            // If manual map required, assign it here but data will be from DB
-            return { ...retryData, detailedDescription: retryData.detailed_description /* etc */ };
-        }
+        //     if (retryError) throw retryError;
+        //     // If manual map required, assign it here but data will be from DB
+        //     return { ...retryData, detailedDescription: retryData.detailed_description /* etc */ };
+        // }
 
         console.error('Error updating project:', error);
         throw error;
     }
 
+    // Use the confirmed slug from the database (in case it was updated or normalized)
+    const currentSlug = data.slug;
+
     // Update modules if provided
     if (project.modules) {
-        // Delete existing modules
-        await supabaseAdmin.from('project_modules').delete().eq('project_slug', slug);
+        // Delete existing modules using the NEW slug (if cascade didn't handle it, or just to be safe/clear)
+        // If ON UPDATE CASCADE is on, they have currentSlug. If not, this logic depends on DB constraints.
+        // Assuming we want to replace them entirely:
+        const { error: deleteError } = await supabaseAdmin.from('project_modules').delete().eq('project_slug', currentSlug);
+        if (deleteError) {
+            console.error('Error deleting project modules:', deleteError);
+            throw deleteError;
+        }
 
         // Insert new modules
         if (project.modules.length > 0) {
             const modules = project.modules.map((module, index) => ({
-                project_slug: slug,
+                project_slug: currentSlug,
                 title: module.title,
                 description: module.description,
                 image: module.image,
                 display_order: index,
             }));
 
-            await supabaseAdmin.from('project_modules').insert(modules);
+            const { error: insertError } = await supabaseAdmin.from('project_modules').insert(modules);
+            if (insertError) {
+                console.error('Error inserting project modules:', insertError);
+                throw insertError;
+            }
         }
     }
 
     // Update gallery if provided
     if (project.gallery) {
         // Delete existing gallery items
-        await supabaseAdmin.from('project_gallery').delete().eq('project_slug', slug);
+        const { error: deleteError } = await supabaseAdmin.from('project_gallery').delete().eq('project_slug', currentSlug);
+        if (deleteError) {
+            console.error('Error deleting project gallery:', deleteError);
+            throw deleteError;
+        }
 
         // Insert new gallery items
         if (project.gallery.length > 0) {
             const gallery = project.gallery.map((item, index) => ({
-                project_slug: slug,
+                project_slug: currentSlug,
                 type: item.type,
                 url: item.url,
                 caption: item.caption,
                 display_order: index,
             }));
 
-            await supabaseAdmin.from('project_gallery').insert(gallery);
+            const { error: insertError } = await supabaseAdmin.from('project_gallery').insert(gallery);
+            if (insertError) {
+                console.error('Error inserting project gallery:', insertError);
+                throw insertError;
+            }
         }
     }
 
-    return getProjectBySlug(slug);
+    return getProjectBySlug(currentSlug);
 }
 
 export async function deleteProject(slug: string): Promise<boolean> {

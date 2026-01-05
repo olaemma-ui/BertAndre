@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Upload, X, Image as ImageIcon, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -10,26 +10,40 @@ interface ImageUploadProps {
     onFileChange?: (file: File | null) => void;
     label?: string;
     deferred?: boolean;
+    file?: File | null;
 }
 
-export function ImageUpload({ value, onChange, onFileChange, label, deferred = false }: ImageUploadProps) {
+export function ImageUpload({ value, onChange, onFileChange, label, deferred = false, file }: ImageUploadProps) {
     const [loading, setLoading] = useState(false);
     const [preview, setPreview] = useState<string | null>(value || null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
+    useEffect(() => {
+        if (file) {
+            const objectUrl = URL.createObjectURL(file);
+            setPreview(objectUrl);
+            return () => URL.revokeObjectURL(objectUrl);
+        } else if (value) {
+            setPreview(value);
+        } else {
+            setPreview(null);
+        }
+    }, [file, value]);
 
-        // Local preview
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setPreview(reader.result as string);
-        };
-        reader.readAsDataURL(file);
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = e.target.files?.[0];
+        if (!selectedFile) return;
 
         // Notify parent of file change
-        onFileChange?.(file);
+        onFileChange?.(selectedFile);
+
+        // Local preview is handled by useEffect via the file prop if passed.
+        // But for immediate feedback if parent internal state update is slow (unlikely),
+        // we can set it here too, but let's rely on useEffect if possible.
+        // Actually, if we set it here, useEffect might override it or vice versa.
+        // Let's just set it here to be responsive.
+        const objectUrl = URL.createObjectURL(selectedFile);
+        setPreview(objectUrl);
 
         // If deferred, don't upload to Cloudinary yet
         if (deferred) {
@@ -39,7 +53,7 @@ export function ImageUpload({ value, onChange, onFileChange, label, deferred = f
         // Upload
         setLoading(true);
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("file", selectedFile);
 
         const promise = fetch("/api/upload", {
             method: "POST",

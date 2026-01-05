@@ -30,11 +30,6 @@ VALUES (
         'Nigeria office physical address'
     ),
     (
-        'contact_address_us',
-        'US: 8 The Green Suite 4000 Dover, DE 19901',
-        'US office physical address'
-    ),
-    (
         'office_hours',
         'Mon–Fri | 8AM – 4PM (WAT)',
         'Standard operating hours'

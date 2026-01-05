@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -12,7 +12,7 @@ const slides = [
     badge: "Welcome to BertAndre Consulting",
     heading: "Business Growth Made Simple",
     description:
-      "Transform your business with expert consultancy services our team of seasoned consultants unparalleled. Transform your business.",
+      "Transform your business with expert consultancy from a team of seasoned professionals.",
     image: "/images/vintage-style-people-working-office-with-computers.jpg",
   },
   {
@@ -43,6 +43,13 @@ export function HeroSection() {
   const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
 
   const current = slides[currentSlide];
 

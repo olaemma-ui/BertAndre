@@ -7,9 +7,10 @@ import { toast } from "sonner";
 import { DataTable } from "@/components/admin/data-table";
 import { ConfirmationDialog } from "@/components/admin/confirmation-dialog";
 import { Button } from "@/components/ui/button";
+import { Service } from "@/lib/services";
 
 export default function AdminServicesPage() {
-    const [services, setServices] = useState<any[]>([]);
+    const [services, setServices] = useState<Service[]>([]);
     const [loading, setLoading] = useState(true);
     const [deleteId, setDeleteId] = useState<string | null>(null);
 
@@ -22,7 +23,9 @@ export default function AdminServicesPage() {
         try {
             const res = await fetch("/api/services");
             const data = await res.json();
-            setServices(data);
+
+            console.log(data);
+            setServices(data.services);
         } catch (error) {
             toast.error("Failed to fetch services");
         } finally {
@@ -115,7 +118,7 @@ export default function AdminServicesPage() {
                 </Button>
             </div>
 
-            <DataTable
+            <DataTable<Service>
                 data={services}
                 columns={columns}
                 loading={loading}

@@ -108,7 +108,7 @@ export function DataTable<T>({
                                 ))
                             ) : (
                                 <AnimatePresence mode="popLayout">
-                                    {data.map((item, idx) => (
+                                    {data?.map((item, idx) => (
                                         <motion.tr
                                             key={(item as any).id || (item as any).slug || idx}
                                             initial={{ opacity: 0, y: 10 }}
@@ -126,7 +126,7 @@ export function DataTable<T>({
                                     ))}
                                 </AnimatePresence>
                             )}
-                            {!loading && data.length === 0 && (
+                            {!loading && (!data || data.length === 0) && (
                                 <tr>
                                     <td colSpan={columns.length} className="px-6 py-20 text-center">
                                         <p className="text-gray-400 font-medium">{emptyMessage}</p>

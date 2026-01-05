@@ -3,22 +3,28 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Trophy, Headphones } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-const stats = [
-  { number: "20k+", label: "Project completed" },
-  { number: "12k+", label: "Happy customers" },
-  { number: "25+", label: "Years experiences" },
+const stats: { number: string; label: string }[] = [
+  // { number: "20k+", label: "Project completed" },
+  // { number: "12k+", label: "Happy customers" },
+  // { number: "25+", label: "Years experiences" },
 ];
 
 
 
 export function WhyChooseSection() {
+  const router = useRouter();
+
+  const handleAbout = () => {
+    router.push('/project')
+  }
   return (
     <section className="py-20 lg:py-32 bg-[#1560bd] overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+        <div className={`grid gap-12 items-center ${stats.length > 0 ? "lg:grid-cols-12" : "lg:grid-cols-2 max-w-6xl mx-auto"}`}>
           {/* Left Content */}
-          <div className="lg:col-span-5">
+          <div className={stats.length > 0 ? "lg:col-span-5" : ""}>
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -100,6 +106,7 @@ export function WhyChooseSection() {
               transition={{ delay: 0.5 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              onClick={handleAbout}
               className="flex items-center gap-3 bg-white text-[#1a1a1a] px-6 py-4 rounded-full font-sans font-medium hover:bg-gray-100 transition-colors group"
             >
               Discover More
@@ -115,7 +122,7 @@ export function WhyChooseSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="lg:col-span-4"
+            className={stats.length > 0 ? "lg:col-span-4" : ""}
           >
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
               <Image
@@ -128,29 +135,31 @@ export function WhyChooseSection() {
           </motion.div>
 
           {/* Right Stats */}
-          <div className="lg:col-span-3 flex flex-col gap-6">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 + index * 0.15 }}
-                className={`w-40 h-40 rounded-full flex flex-col items-center justify-center ${index === 1
-                  ? "bg-white text-[#1a1a1a] ml-auto lg:ml-8"
-                  : "bg-[#1a1a1a] border-2 border-white/20 text-white"
-                  }`}
-              >
-                <span
-                  className={`text-3xl font-serif font-bold ${index === 1 ? "text-[#1560bd]" : ""
+          {stats.length > 0 && (
+            <div className="lg:col-span-3 flex flex-col gap-6">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 + index * 0.15 }}
+                  className={`w-40 h-40 rounded-full flex flex-col items-center justify-center ${index === 1
+                    ? "bg-white text-[#1a1a1a] ml-auto lg:ml-8"
+                    : "bg-[#1a1a1a] border-2 border-white/20 text-white"
                     }`}
                 >
-                  {stat.number}
-                </span>
-                <span className="text-sm font-sans mt-1">{stat.label}</span>
-              </motion.div>
-            ))}
-          </div>
+                  <span
+                    className={`text-3xl font-serif font-bold ${index === 1 ? "text-[#1560bd]" : ""
+                      }`}
+                  >
+                    {stat.number}
+                  </span>
+                  <span className="text-sm font-sans mt-1">{stat.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
