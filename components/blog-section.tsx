@@ -6,6 +6,7 @@ import { ArrowUpRight, User, Calendar, Loader2, BookOpen } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import cloudinaryLoader from "@/lib/cloudinary"
 
 interface BlogPost {
     title: string;
@@ -75,6 +76,7 @@ export function BlogSection() {
                         <Link href={`/blogs/${featuredBlog.slug}`} className="block">
                             <div className="relative aspect-[16/10] rounded-3xl overflow-hidden mb-8 shadow-2xl shadow-blue-500/5">
                                 <Image
+                                    loader={cloudinaryLoader}
                                     src={featuredBlog.imageUrl || "/placeholder.svg"}
                                     alt={featuredBlog.title}
                                     fill
@@ -122,6 +124,7 @@ export function BlogSection() {
                                 <Link href={`/blogs/${blog.slug}`} className="flex gap-6 group">
                                     <div className="relative w-32 h-32 md:w-48 md:h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg shadow-gray-200">
                                         <Image
+                                            loader={cloudinaryLoader}
                                             src={blog.imageUrl || "/placeholder.svg"}
                                             alt={blog.title}
                                             fill

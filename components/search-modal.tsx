@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { searchSite, SearchResult } from "@/app/actions/search";
+import cloudinaryLoader from "@/lib/cloudinary";
 
 interface SearchModalProps {
     isOpen: boolean;
@@ -96,6 +97,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                         >
                                             <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-gray-800">
                                                 <Image
+                                                    loader={cloudinaryLoader}
                                                     src={result.image}
                                                     alt={result.title}
                                                     fill

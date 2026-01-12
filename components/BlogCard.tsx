@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calendar, User, Tag } from "lucide-react";
+import CloudinaryImage from "@/components/ui/cloudinary-image";
 
 export default function BlogCard({ blog }: any) {
   return (
     <article className="space-y-6">
       <div className="relative h-[420px] rounded-xl overflow-hidden">
-        <Image
+        <CloudinaryImage
           src={blog.imageUrl || "/placeholder.jpg"}
           alt={blog.title}
           fill

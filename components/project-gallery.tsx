@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useCallback, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { GalleryItem } from "@/lib/projects";
+import cloudinaryLoader from "@/lib/cloudinary";
 
 interface ProjectGalleryProps {
     items: GalleryItem[];
@@ -42,6 +43,7 @@ export function ProjectGallery({ items }: ProjectGalleryProps) {
                             <div className="relative aspect-video rounded-2xl overflow-hidden bg-black/5 border border-black/5">
                                 {item.type === "image" ? (
                                     <Image
+                                        loader={cloudinaryLoader}
                                         src={item.url}
                                         alt={item.caption || "Gallery image"}
                                         fill

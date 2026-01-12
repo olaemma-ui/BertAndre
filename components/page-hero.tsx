@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import cloudinaryLoader from "@/lib/cloudinary";
 
 interface PageHeroProps {
   title: string;
@@ -18,7 +19,7 @@ export function PageHero({ title, description, breadcrumb, backgroundImage }: Pa
       <div
         className="absolute h-full inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('${backgroundImage || '/images/factory-engineers-look-assembly-lines-designs-working-increase-output.jpg'}')`,
+          backgroundImage: `url('${cloudinaryLoader({ src: backgroundImage || '/images/factory-engineers-look-assembly-lines-designs-working-increase-output.jpg', width: 1920, quality: 75 })}')`,
         }}
       />
       {/* Overlay */}

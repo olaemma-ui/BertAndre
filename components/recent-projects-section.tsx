@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ArrowUpRight, ArrowRight, Loader2, Link as LinkIcon, Plus } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import cloudinaryLoader from "@/lib/cloudinary"
 import { Button } from "@/components/ui/button"
 
 interface Project {
@@ -111,6 +112,7 @@ export function RecentProjectsSection() {
                             <Link href={`/projects/${projects[0].slug}`} className="block">
                                 <div className="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl shadow-blue-500/10">
                                     <Image
+                                        loader={cloudinaryLoader}
                                         src={projects[0].image || "/placeholder.svg"}
                                         alt={projects[0].title}
                                         fill
@@ -162,6 +164,7 @@ export function RecentProjectsSection() {
                                     <Link href={`/projects/${project.slug}`} className="flex flex-col sm:flex-row lg:flex-col gap-6">
                                         <div className="relative aspect-video rounded-3xl overflow-hidden shadow-xl shadow-gray-200 w-full sm:w-1/2 lg:w-full">
                                             <Image
+                                                loader={cloudinaryLoader}
                                                 src={project.image || "/placeholder.svg"}
                                                 alt={project.title}
                                                 fill

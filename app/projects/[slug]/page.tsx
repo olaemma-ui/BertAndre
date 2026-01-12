@@ -8,6 +8,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ConsultationSection } from "@/components/consultation-section";
 import { ProjectGallery } from "@/components/project-gallery";
+import CloudinaryImage from "@/components/ui/cloudinary-image";
 
 interface ProjectPageProps {
     params: Promise<{
@@ -54,7 +55,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
             {/* Hero Section */}
             <section className="relative h-[60vh] -top-22 min-h-[700px] flex items-center pb-20 overflow-hidden">
-                <Image
+                <CloudinaryImage
                     src={project.image}
                     alt={project.title}
                     width={1920}
@@ -197,7 +198,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {project.modules?.map((module, idx) => (
                             <div key={idx} className="group relative bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-colors">
                                 <div className="relative aspect-video w-full overflow-hidden">
-                                    <Image
+                                    <CloudinaryImage
                                         src={module.image}
                                         alt={module.title}
                                         fill

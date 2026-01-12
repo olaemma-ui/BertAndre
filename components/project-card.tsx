@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import cloudinaryLoader from "@/lib/cloudinary";
 
 interface ProjectCardProps {
     title: string;
@@ -25,6 +26,7 @@ export function ProjectCard({ title, category, image, slug, index }: ProjectCard
             >
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
                     <Image
+                        loader={cloudinaryLoader}
                         src={image}
                         alt={title}
                         fill
