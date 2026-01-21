@@ -4,17 +4,24 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Added @font-face declarations for custom Andor font */
-@font-face {
+/* @font-face {
   font-family: "Andor";
   src: url("/fonts/Andor-Family/Andor Regular.otf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+} */
+@font-face {
+  font-family: "Delight";
+  src: url("/fonts/Delight/delight-regular.otf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Andor";
-  src: url("/fonts/Andor-Family/Andor Bold.otf") format("truetype");
+  font-family: "Delight";
+  src: url("/fonts/Delight/delight-bold.otf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -85,8 +92,9 @@
 
 @theme inline {
   /* Updated font families to use custom Andor and Monument Grotesk fonts */
+  /* --font-serif: "Andor", "Playfair Display", "Playfair Display Fallback", serif; */
   --font-sans: "Monument Grotesk", "Inter", "Inter Fallback", sans-serif;
-  --font-serif: "Andor", "Playfair Display", "Playfair Display Fallback", serif;
+  --font-serif: "Delight", "Playfair Display", "Playfair Display Fallback", serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
